@@ -1,9 +1,17 @@
 const canvas = document.getElementById("jsCanvas");
+const ctx = canvas.getContext("2d"); // 2d말고도 많은 요소가 있다
+
+ctx.strokeStyle = "#2c2c2c2";
+ctx.lineWidth = 2.5; // 그림을 그리는데 선의 굵기를 설정한다
 
 let painting = false; // 그림에 대한 기능
 
 function stopPainting() {
     painting = false;
+}
+
+function startPaintring() {
+    painting = true;
 }
 
 function onMouseMove(event) {
@@ -21,23 +29,16 @@ function onMouseDown(event) {
 
 }
 
-function onMouseUp(event) {
-    stopPainting();
-    // line이 생길 수 있으므로 마우스 땔때는 stopPaint을 실행시킨다
-
-}
-
-
 if (canvas) { // canvas가 있을 경우
     canvas.addEventListener("mousemove", onMouseMove);
     // canvas 위에서 마우스가 움직이는 이벤트 대기(다른곳에서 움직이는 건 인식 되지 않는다)
     // mouseenter : 마우스가 canvas로 들어왔을때를 의미한다
     // mousemove : 마우스가 움직이는 이벤트
 
-    canvas.addEventListener("mousedown", onMouseDown);
+    canvas.addEventListener("mousedown", startPaintring);
     // 마우스 클릭 이벤트 -> paint 기능 시작
 
-    canvas.addEventListener("mouseup", onMouseUp);
+    canvas.addEventListener("mouseup", stopPainting);
     // 마우스 클릭 해제 이벤트 -> paint 기능 종료
 
     canvas.addEventListener("mouseleave", stopPainting);
