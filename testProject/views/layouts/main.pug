@@ -1,0 +1,24 @@
+// pug의 주석 사용 방법
+// main.pug를 기반으로 다른 view파일이 만들어 진다
+
+doctype html
+// html이라는 것을 설정하기 위한 코드
+html
+    head
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU", crossorigin="anonymous")
+        // font awesome을 사용하기 위한 추가    
+        title #{pageTitle} | #{siteName}
+        // siteName은 middleware에서 전달한 데이터를 통해서 채워진다
+    body
+        include ../partials/header
+        main
+            // 이 자리는 페이지마다 내용이 바뀌는 자리
+            block content
+                // block이라는 태그는 name을 가지게 되고 content라는 name부여
+        include ../partials/footer
+        // footer를 따로 두고 layout에 넣는다
+
+
+// 하나의 레이아웃을 통해서 여러 페이지에 사용하기 위해서 생성
+// content의 내용만 바꿔줌으로 각각의 페이지 마다 똑같은 코드를 복사하지 않아도 된다
+
